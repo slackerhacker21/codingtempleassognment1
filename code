@@ -1,0 +1,52 @@
+def main():
+  """
+  Main function to handle the CLI application.
+  """
+  tasks = []  # Initialize an empty list to store tasks
+
+  while True:
+    print("\nWelcome to the Task Manager!")
+    print("1. Add Task")
+    print("2. View Tasks")
+    print("3. Delete Task")
+    print("4. Quit")
+
+    choice = input("Enter your choice (1-4): ")
+
+    if choice == '1':
+      task = input("Enter the task: ")
+      tasks.append(task)
+      print("Task added successfully!")
+
+    elif choice == '2':
+      if not tasks:
+        print("No tasks found.")
+      else:
+        print("Tasks:")
+        for i, task in enumerate(tasks):
+          print(f"{i+1}. {task}")
+
+    elif choice == '3':
+      if not tasks:
+        print("No tasks to delete.")
+      else:
+        view_tasks()
+        try:
+          index = int(input("Enter the task number to delete: ")) - 1
+          if 0 <= index < len(tasks):
+            deleted_task = tasks.pop(index)
+            print(f"Task '{deleted_task}' deleted successfully!")
+          else:
+            print("Invalid task number.")
+        except ValueError:
+          print("Invalid input. Please enter a number.")
+
+    elif choice == '4':
+      print("Goodbye!")
+      break
+
+    else:
+      print("Invalid choice. Please enter a number between 1 and 4.")
+
+if __name__ == "__main__":
+  main()
